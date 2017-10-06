@@ -1,0 +1,6 @@
+package com.old.service;
+
+public interface ChatService {
+void saveMessage(String userid1,String userid2,String message);
+void readMessage(String userid1,String userid2,String message);
+}

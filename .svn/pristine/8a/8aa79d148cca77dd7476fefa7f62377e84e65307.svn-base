@@ -1,0 +1,9 @@
+package com.old.dao;
+
+import com.old.model.Collecgoods;
+
+public interface CollecgoodsMapper {
+    int insert(Collecgoods record);
+
+    int insertSelective(Collecgoods record);
+}

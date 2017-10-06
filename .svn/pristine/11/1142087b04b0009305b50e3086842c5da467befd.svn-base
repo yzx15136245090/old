@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.old.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.old.model.User" >
+    <id column="UserId" property="userid" jdbcType="VARCHAR" />
+    <result column="UserName" property="username" jdbcType="VARCHAR" />
+    <result column="UserSchool" property="userschool" jdbcType="VARCHAR" />
+    <result column="Password" property="password" jdbcType="VARCHAR" />
+    <result column="Telphone" property="telphone" jdbcType="VARCHAR" />
+    <result column="Email" property="email" jdbcType="VARCHAR" />
+    <result column="Credit" property="credit" jdbcType="VARCHAR" />
+    <result column="InviteCode" property="invitecode" jdbcType="VARCHAR" />
+    <result column="Power" property="power" jdbcType="VARCHAR" />
+    <result column="Photo" property="photo" jdbcType="VARCHAR" />
+   
+  </resultMap>
+  <sql id="Base_Column_List" >
+    UserId, UserName, UserSchool, Password, Telphone, Email, Credit, InviteCode, Power, 
+    Photo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where UserId = #{userid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user
+    where UserId = #{userid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.old.model.User" >
+    insert into user (UserId, UserName, UserSchool, 
+      Password, Telphone, Email, 
+      Credit, InviteCode, Power, 
+      Photo)
+    values (#{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{userschool,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{telphone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{credit,jdbcType=VARCHAR}, #{invitecode,jdbcType=VARCHAR}, #{power,jdbcType=VARCHAR}, 
+      #{photo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.old.model.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        UserId,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="userschool != null" >
+        UserSchool,
+      </if>
+      <if test="password != null" >
+        Password,
+      </if>
+      <if test="telphone != null" >
+        Telphone,
+      </if>
+      <if test="email != null" >
+        Email,
+      </if>
+      <if test="credit != null" >
+        Credit,
+      </if>
+      <if test="invitecode != null" >
+        InviteCode,
+      </if>
+      <if test="power != null" >
+        Power,
+      </if>
+      <if test="photo != null" >
+        Photo,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userschool != null" >
+        #{userschool,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null" >
+        #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="credit != null" >
+        #{credit,jdbcType=VARCHAR},
+      </if>
+      <if test="invitecode != null" >
+        #{invitecode,jdbcType=VARCHAR},
+      </if>
+      <if test="power != null" >
+        #{power,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.old.model.User" >
+    update user
+    <set >
+      <if test="username != null" >
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userschool != null" >
+        UserSchool = #{userschool,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        Password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null" >
+        Telphone = #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        Email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="credit != null" >
+        Credit = #{credit,jdbcType=VARCHAR},
+      </if>
+      <if test="invitecode != null" >
+        InviteCode = #{invitecode,jdbcType=VARCHAR},
+      </if>
+      <if test="power != null" >
+        Power = #{power,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        Photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      
+    </set>
+    where UserId = #{userid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.old.model.User" >
+    update user
+    set UserName = #{username,jdbcType=VARCHAR},
+      UserSchool = #{userschool,jdbcType=VARCHAR},
+      Password = #{password,jdbcType=VARCHAR},
+      Telphone = #{telphone,jdbcType=VARCHAR},
+      Email = #{email,jdbcType=VARCHAR},
+      Credit = #{credit,jdbcType=VARCHAR},
+      InviteCode = #{invitecode,jdbcType=VARCHAR},
+      Power = #{power,jdbcType=VARCHAR},
+      Photo = #{photo,jdbcType=VARCHAR},
+      
+    where UserId = #{userid,jdbcType=VARCHAR}
+  </update>
+  <select id="queryUserInfo"    resultMap="BaseResultMap" parameterType="java.lang.String">
+  select UserId, UserName, password ,telphone,email,credit,invitecode,power,photo from user where UserName=#{username}
+  </select>
+  <select id="queryUserInfoemail"    resultMap="BaseResultMap" parameterType="java.lang.String">
+  select UserId, UserName, password ,telphone,email,credit,invitecode,power,photo from user where Email = #{email}
+  </select>
+  
+  <select id="queryUserInfoid"    resultMap="BaseResultMap" parameterType="java.lang.String">
+  select UserId, UserName, password ,telphone,email,credit,invitecode,power,photo from user where UserId = #{UserId}
+  </select>
+  <update id="updateUser" parameterType="com.old.model.User">
+    update user set  UserName = #{username},
+      UserSchool = #{userschool},
+      Password = #{password},
+      Telphone = #{telphone},
+      Email = #{email},
+      Credit = #{credit},
+      InviteCode = #{invitecode},
+      Power = #{power},
+      Photo = #{photo},
+       where UserId=#{userid}
+  </update>
+  
+  <select id="findUserById"  parameterType="String"  resultMap="BaseResultMap">
+   select UserId, UserName, password ,telphone,email,credit,invitecode,power,photo from user where UserId=#{userid}
+  </select>
+  
+  
+  
+  
+</mapper>
+
+
+
+
+
