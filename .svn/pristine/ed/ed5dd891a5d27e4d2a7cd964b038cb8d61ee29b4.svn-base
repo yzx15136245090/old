@@ -1,9 +1,0 @@
-package com.old.dao;
-
-import com.old.model.Deal;
-
-public interface DealMapper {
-    int insert(Deal record);
-
-    int insertSelective(Deal record);
-}
